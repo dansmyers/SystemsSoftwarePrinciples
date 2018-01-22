@@ -171,7 +171,8 @@ prompt$ grep "^\(aa\|ee\)" /usr/share/dict/american-english-large
 ### Pain
 
 Here's one last advanced regex feature. If you enclose a pattern in parentheses, the string that matches that pattern is said to
-be "captured". The evaluator will keep track of the captured pattern in case you want to refer to it later. You can then match the first captured pattern ina regex using `\1`.
+be "captured". The evaluator will keep track of the captured pattern in case you want to refer to it later, which you can do using 
+`\1`.
 
 For example, match any words having double letters:
 
