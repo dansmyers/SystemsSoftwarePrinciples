@@ -17,7 +17,7 @@ There's a famous programming joke:
 You need to solve a problem. You decide to use regular expressions. Now you have two problems.
 ```
 
-`grep` is short for *globally search a regular expression and print*. It's basic use case takes two arguments:
+`grep` is short for *globally search a regular expression and print*. Its basic use case takes two arguments:
 
     - A regular expression
     
@@ -27,9 +27,8 @@ You need to solve a problem. You decide to use regular expressions. Now you have
 
 ### Wordlist
 
-There is a tradition of including a plain text dictionary of words a part of a Unix installation, for use with spellchecking and 
-password programs. The word list we used for the password cracking program was a medium sized example.
-
+There is a tradition of including a plain text dictionary of words as part of a Unix installation, for use with spellchecking and 
+password programs. The list we used for the password cracking project in the last class was a medium sized example.
 Install a wordlist into your Cloud 9 repo using:
 
 ```
@@ -37,10 +36,9 @@ prompt$ sudo apt-get install wamerican-large
 ```
 
 This command will install a large list of patriotic American words into the directory `/usr/share/dict`. Other less patriotic wordlists
-are also available. You can run `sudo apt-get install 
-wordlist` to see a list of all the options.
+are also available. You can run `sudo apt-get install wordlist` to see a list of all the options.
 
-Questions: what does the `sudo` command do? What about `apt-get install`?
+Question: what does the `sudo` command do?
 
 ### Searching for a substring
 
@@ -58,17 +56,17 @@ is denoted by `/`. Pro tip: press TAB to autocomplete the part of the path that 
 
 The command prints all words in the file containing the string `cat`. This is a lot of words!
 
-You can be more specific:
+Other substring choices may yield fewer results:
 
 ```
 grep "platypus" /usr/share/dict/american-english-large
 ```
 
-**Find all the words that contain two consecutive `a`'s.**
+**Find all the words that contain two consecutive `a`'s. Are there any words that contain three consecutive `a`'s?**
 
 ### Matching beginnings and endings
 
-Use the `^` symbol to denote the beginning of a line. To find all words that begin with 'x':
+Use the `^` symbol to denote the beginning of a line. Patterns that start with `^` will only be matched if they occur at the beginning of the line. To find all words that begin with 'x':
 
 ```
 prompt$ grep "^x" /usr/share/dict/american-english-large
@@ -102,12 +100,24 @@ Sets of characters are enclosed in square brackets. For example,
 
     - `[a-zA-Z0-9]` is the compact way or writing the set of all lowercase letters, uppercase letters, and digits
     
-**Find all the words in the wordlist that start with `q` but not `qu`.**
+When you give `grep` a character set, it's allowed to match any of the options that occur within the set. For example, find all the words in the wordlist that start with `q` but not `qu`:
+
+```
+prompt$ grep "^q[aeio]" /usr/share/dict/american-english-large
+```
 
 Questions like the previous one can be made easier by using `^` as the first symbol in a set, which matches everything *except* the
 characters in the set:
 
     - `[^aeiou]` is the set of all characters *except* the lowercase vowels
+    
+    - `[^a-z]` is the set of all characters *except* the lowercase letters
+    
+Find all the words that contain characters other than a normal lowercase or uppercase letter:
+
+```
+prompt$ grep "[^a-zA-Z]" /usr/share/dict/american-english-large
+```
     
 **Find all the words that start with `q` but not `qu` using the exclusionary character set approach**.
 
