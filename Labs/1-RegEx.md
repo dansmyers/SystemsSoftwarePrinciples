@@ -66,13 +66,13 @@ grep "platypus" /usr/share/dict/american-english-large
 
 ### Matching beginnings and endings
 
-Use the `^` symbol to denote the beginning of a line. Patterns that start with `^` will only be matched if they occur at the beginning of the line. To find all words that begin with 'x':
+Use the `^` symbol to denote the beginning of a line. Patterns that start with `^` will only be matched if they occur at the beginning of the line. To find all words that begin with `x`:
 
 ```
 prompt$ grep "^x" /usr/share/dict/american-english-large
 ```
 
-**Find all the words that begin with 'q'.**
+**Find all the words that begin with `q`.**
 
 Use `$` to match the end of a line. To find all of the words that end with `esses`:
 
