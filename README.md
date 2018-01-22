@@ -1,2 +1,3 @@
 # SystemsSoftwarePrinciples
-Notes, labs, and examples for Rollins College's CMS 330 course
+
+Notes, assignments and resources for Rollins College's CMS 330: Systems Software Principles.
