@@ -29,7 +29,14 @@ You need to solve a problem. You decide to use regular expressions. Now you have
 
 There is a tradition of including a plain text dictionary of words as part of a Unix installation, for use with spellchecking and 
 password programs. The list we used for the password cracking project in the last class was a medium sized example.
-Install a wordlist into your Cloud 9 repo using:
+
+First update your workspace:
+
+```
+prompt$ sudo apt-get update
+```
+
+The install a wordlist into your Cloud 9 repo:
 
 ```
 prompt$ sudo apt-get install wamerican-large
