@@ -113,7 +113,7 @@ characters in the set:
 
 ### Kleene closure
 
-Use `*` to match 0 or more instances of a pattern. This is often combined with `.` as a generic placeholder that can match any character.
+Use `*` to match 0 or more instances of a pattern. This is often combined with `.` as a generic placeholder that can match any character. `.*` is therefore a wildcard that matches any number (including zero) of arbitrary characters.
 
 Find the words of any length that start with `q` and end with `ing`:
 
@@ -123,7 +123,7 @@ prompt$ grep "^q.*ing$" /usr/share/dict/american-english-large
 
 **I'm thinking of a word that starts with `he` and ends with `he`. What could it be?**
 
-**Find all the words that contain no vowels.**
+**Find all the words that contain no vowels. Hint: use `^` and `$` to specify that the entire line must have no vowels.**
 
 ### Repeating
 
@@ -152,7 +152,7 @@ Find all the words that start or end with `x`:
 prompt$ grep "^x\|x$" /usr/share/dict/american-english-large
 ```
 
-Parentheses `\(` and `\)` can be used to group expressions. Match all words starting with either `aa` or `ee`:
+Parentheses `\(` and `\)` can be used to group expressions. For example, to match all words starting with either `aa` or `ee`:
 
 ```
 prompt$ grep "^\(aa\|ee\)" /usr/share/dict/american-english-large
