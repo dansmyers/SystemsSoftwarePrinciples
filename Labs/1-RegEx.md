@@ -19,9 +19,9 @@ You need to solve a problem. You decide to use regular expressions. Now you have
 
 `grep` is short for *globally search a regular expression and print*. Its basic use case takes two arguments:
 
-    - A regular expression
+- A regular expression
     
-    - A file name
+- A file name
     
 `grep` searches the target file for any strings matching the pattern described by the regular expression and prints them to the screen.
 
@@ -94,11 +94,11 @@ prompt$ grep "^platypus$" /usr/share/dict/american-english-large
 
 Sets of characters are enclosed in square brackets. For example,
 
-    - `[aeiou]` is the set of lowercase vowels
+- `[aeiou]` is the set of lowercase vowels
     
-    - `[aeiouAEIOU]` is the set of lowercase and uppercase vowel characters
+- `[aeiouAEIOU]` is the set of lowercase and uppercase vowel characters
 
-    - `[a-zA-Z0-9]` is the compact way or writing the set of all lowercase letters, uppercase letters, and digits
+- `[a-zA-Z0-9]` is the compact way or writing the set of all lowercase letters, uppercase letters, and digits
     
 When you give `grep` a character set, it's allowed to match any of the options that occur within the set. For example, find all the words in the wordlist that start with `q` but not `qu`:
 
@@ -109,9 +109,9 @@ prompt$ grep "^q[aeio]" /usr/share/dict/american-english-large
 Questions like the previous one can be made easier by using `^` as the first symbol in a set, which matches everything *except* the
 characters in the set:
 
-    - `[^aeiou]` is the set of all characters *except* the lowercase vowels
+- `[^aeiou]` is the set of all characters *except* the lowercase vowels
     
-    - `[^a-z]` is the set of all characters *except* the lowercase letters
+- `[^a-z]` is the set of all characters *except* the lowercase letters
     
 Find all the words that contain characters other than a normal lowercase or uppercase letter:
 
@@ -206,9 +206,9 @@ couldn't keep track of anything.
 
 This is really just a cursory overview of the features of `grep` and regular expressions in Unix. A few final notes:
 
-    - I do not expect you to memorize the syntax for regular expressions.
+- I do not expect you to memorize the syntax for regular expressions.
     
-    - There are actually a few different syntaxes in circulation; the Perl language has its own built-in regex evaluator with its own 
+- There are actually a few different syntaxes in circulation; the Perl language has its own built-in regex evaluator with its own 
     syntax.
     
-    - The general answer to questions about pattern matching, substring replacement, etc. is "Use 'grep' and regular expressions."
+- The general answer to questions about pattern matching, substring replacement, etc. is "Use 'grep' and regular expressions."
