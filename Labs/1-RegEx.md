@@ -4,7 +4,7 @@ This short lab will let you practice using regular expressions with `grep`, a st
 
 ## Repository
 
-First, log into Cloud 9 and create a new CMS330 workspace for this course. The name of your workspace should be **CMS330** and the 
+First, log into Cloud 9 and create a new CMS330 workspace for this course. The name of your workspace should be **cms330** and the 
 description should be **CMS 330 Your Name**, where you fill in your name. Choose C/C++ for the workspace type.
 
 As soon as the workspace becomes available, go to the **Sharing** tab in the upper right and give me (dmyers) access to your workspace.
