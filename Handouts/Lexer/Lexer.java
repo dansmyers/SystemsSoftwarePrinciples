@@ -72,18 +72,17 @@ public class Lexer {
                 Driver.error("Unexpected character " + (char) c, this.line);
             }
         }
-	}
+    }
 
-
-	//*** Main lexical analysis routine ***//
+    //*** Main lexical analysis routine ***//
     //
     // Scans the input program and returns an ArrayList containing all of its
     // Tokens.
 	public ArrayList<Token> analyze() {
 
-		ArrayList<Token> tokens = new ArrayList<Token>();
+        ArrayList<Token> tokens = new ArrayList<Token>();
 
-		Token t;
+        Token t;
 		do {
             t = nextToken();
             tokens.add(t);
