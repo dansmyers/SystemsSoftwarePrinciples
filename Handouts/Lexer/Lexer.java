@@ -38,49 +38,7 @@ public class Lexer {
 		this.index++;
 		return c;
 	}
-	
-	
-	//*** Build an identifier: returns a NAME or keyword Token ***//
-	public Token analyzeIdentifier() {
-        StringBuilder identifier = new StringBuilder();
-    
-        while (true) {
-            char c = nextCharacter();
-      
-            if (!Character.isLetter(c) && !Character.isDigit(c) && c != '_') {
-                unread();
-                break;
-            } else {
-                identifier.append((char) c);
-            }
-        }
-    
-        String identString = identifier.toString();
 
-        return new Token(Tokens.NAME, identString, this.line);
-	}
-	
-	
-	//*** Integer number literals ***//
-	public Token analyzeNumber() {
-		int value = 0;
-		
-		while (true) {
-			char c = nextCharacter();
-			
-			if (Character.isDigit(c)) {
-                value = value * 10;
-                value += Character.getNumericValue(c);
-                
-			} else {
-				unread();
-				break;
-			}
-        }
-
-        return new Token(Tokens.INTEGER, value, this.line);
-	}
-	
 	
 	//*** Find and return the next Token ***//
 	public Token nextToken() {
@@ -92,31 +50,8 @@ public class Lexer {
             	return new Token(Tokens.EOF, this.line);
             }
             
-    		// NAME  
-            if (Character.isLetter(c)) {
-                unread();
-                return analyzeIdentifier();
-            }
-            
-            // INTEGER
-            else if (Character.isDigit(c) || c == '.') {
-                unread();
-                return analyzeNumber();
-            }
-            
-            // Math symbols
-            else if (c == '+') {
-                return new Token(Tokens.PLUS, this.line);
-            } else if (c == '*') {
-                return new Token(Tokens.TIMES, this.line);
-            } else if (c == '/') {
-                return new Token(Tokens.DIVIDE, this.line);
-            } else if (c == '-') {
-                return new Token(Tokens.MINUS, this.line);
-            }
-            
             // Relational operators
-            else if (c == '=') {
+            if (c == '=') {
                 return new Token(Tokens.EQUAL, this.line); 
             } else if (c == '>') {
                 int next = nextCharacter();
@@ -128,22 +63,9 @@ public class Lexer {
                     return new Token(Tokens.GREATER_THAN, this.line);
                 }
             } else if (c == '<') {
-                int next = nextCharacter();
-        
-                if (next == '=') {
-                    return new Token(Tokens.LESS_THAN_OR_EQUAL, this.line); 
-                } else if (next == '>') {
-                    return new Token(Tokens.NOT_EQUAL, this.line);
-                } else {
-                    unread();
-                    return new Token(Tokens.LESS_THAN, this.line);
-                }
+ 
+ 
             } 
-            
-            // Newline
-            else if (c == '\n') {
-                this.line++;
-            }
             
             // Default: ignore whitespace
             else if (!Character.isWhitespace(c)) {
