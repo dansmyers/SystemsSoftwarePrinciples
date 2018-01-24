@@ -4,15 +4,15 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Driver {
-	
+
 	//*** Simple error handling routine: reports line number and message ***//
 	public static void error(String errorMessage, int lineNumber) {
 		System.out.print("Error on line " + lineNumber + ": ");
 		System.out.println(errorMessage);
 		System.exit(1);
 	}
-	
-	
+
+
 	//*** Runtime errors -- no line number ***//
 	public static void error(String errorMessage) {
 		System.out.println(errorMessage);
@@ -34,27 +34,27 @@ public class Driver {
 		for (Token t : tokens) {
 			System.out.println(t);
 		}
-		
+
 		//*** Parsing and execution will go here in future versions ***//
     }
 
 
 	//*** Main: interpret the file name given as a command line argument ***//
 	public static void main(String[] args) {
-		
+
 		if (args.length < 1) {
 			System.out.println("Usage: java Driver FILENAME");
 			System.exit(0);
 		}
-		
+
 		Driver Driver = new Driver();
-		
+
 		try {
 		    Driver.run(args[0]);
 		} catch(IOException e) {
-		    Driver.error("Could not open file " + args[0] + ".", 0);	
+		    Driver.error("Could not open file " + args[0] + ".", 0);
 		}
-		
+
 	    return;
     }
 }
