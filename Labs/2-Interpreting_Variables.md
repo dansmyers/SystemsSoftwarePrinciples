@@ -162,8 +162,8 @@ Next, add the `assignStmt` method:
 ```
 //*** Name := Expr ***//
 public Stmt.AssignStmt assignStmt() {
-		String name = (String) currentToken().value;
-		consume(Tokens.NAME);
+    String name = (String) currentToken().value;
+    consume(Tokens.NAME);
     consume(Tokens.ASSIGN);
     Expr e = expr();
     return new Stmt.AssignStmt(name, e);
@@ -178,29 +178,29 @@ public Expr atom() {
 
     // Integer literal
     if (check(Tokens.INTEGER)) {
-			  return integer();
-		}
+        return integer();
+    }
 
-		// Nested expression
-		else if (check(Tokens.LEFT_PAREN)) {
-			  consume(Tokens.LEFT_PAREN);
-			  Expr e = expr();
-			  consume(Tokens.RIGHT_PAREN);
-			  return e;
-		}
+    // Nested expression
+    else if (check(Tokens.LEFT_PAREN)) {
+        consume(Tokens.LEFT_PAREN);
+        Expr e = expr();
+        consume(Tokens.RIGHT_PAREN);
+        return e;
+    }
 		
-		// Var name
-		else if (check(Tokens.NAME)) {
-			  String name = (String) currentToken().value;
-			  consume(Tokens.NAME);
-			  return new Expr.VarAccess(name);
-		}
+    // Var name
+    else if (check(Tokens.NAME)) {
+        String name = (String) currentToken().value;
+        consume(Tokens.NAME);
+        return new Expr.VarAccess(name);
+    }
 
-		// Anything else is an error
-		else {
-			  Driver.error("Expected atom, found " + currentToken().type, currentToken().line);
-			  return null;
-		}
+    // Anything else is an error
+    else {
+        Driver.error("Expected atom, found " + currentToken().type, currentToken().line);
+        return null;
+    }
 }
 ```
 
@@ -218,7 +218,7 @@ HashMap<String, Object> environment;
 	
 	
 public Interpreter() {
-		this.environment = new HashMap<String, Object>();
+    this.environment = new HashMap<String, Object>();
 }
 ```
 
@@ -235,13 +235,13 @@ The remaining changes are mirrors of their counterparts in the parser. First, up
 ```
 //*** Evaluate a single statement ***//
 public void evalStmt(Stmt stmt) {
-		if (stmt instanceof Stmt.PrintStmt) {
-		    evalPrintStmt((Stmt.PrintStmt) stmt);
-		} else if (stmt instanceof Stmt.AssignStmt) {
-			  evalAssignStmt((Stmt.AssignStmt) stmt);
-		}
+    if (stmt instanceof Stmt.PrintStmt) {
+        evalPrintStmt((Stmt.PrintStmt) stmt);
+    } else if (stmt instanceof Stmt.AssignStmt) {
+        evalAssignStmt((Stmt.AssignStmt) stmt);
+    }
 
-		// Add cases for other kinds of statements
+    // Add cases for other kinds of statements
 }
 ```
 
@@ -250,9 +250,9 @@ Then the `evalAssignStmt` method:
 ```
 //*** Assign statement: update mapping in environment table ***//
 public void evalAssignStmt(Stmt.AssignStmt stmt) {
-		String name = stmt.name;
-		Object value = evalExpr(stmt.expr);
-		this.environment.put(name, value);
+    String name = stmt.name;
+    Object value = evalExpr(stmt.expr);
+    this.environment.put(name, value);
 }
 ```
 
@@ -265,26 +265,26 @@ The second set of changes are to incorporate variables into expressions:
 //*** Evaluate a single atom value ***//
 public Object evalAtom(Expr e) {
 
-		// Integer
-	    if (e instanceof Expr.IntegerValue) {
-			return evalInteger((Expr.IntegerValue) e);
-		}
+    // Integer
+    if (e instanceof Expr.IntegerValue) {
+        return evalInteger((Expr.IntegerValue) e);
+    }
 		
-		// Var name
-		else if (e instanceof Expr.VarAccess) {
-			  String name = ((Expr.VarAccess) e).name;
+    // Var name
+    else if (e instanceof Expr.VarAccess) {
+        String name = ((Expr.VarAccess) e).name;
 
-		    if (!this.environment.containsKey(name)) {
-			    Driver.error("Unknown variable name " + name + ".");
-		    }
+        if (!this.environment.containsKey(name)) {
+            Driver.error("Unknown variable name " + name + ".");
+        }
 
-		    return this.environment.get(name);
-		}
+        return this.environment.get(name);
+    }
 
-		// Nested expression
-		else {
-			return evalExpr(e);
-		}
+    // Nested expression
+    else {
+        return evalExpr(e);
+    }
 }
 ```
 
@@ -350,13 +350,8 @@ Guess what you need to implement for Phase 2 of the project?
 Some other features that might be nifty:
 
 - A mod operator, so we can test for divisibility
-
 - Real-valued numbers
-
 - `for` loops
-
 - Subroutine definitions
-
 - Subroutines that can take arguments and return results
-
 - Lexical scoping, which would allow for subroutines that have their own local variables
