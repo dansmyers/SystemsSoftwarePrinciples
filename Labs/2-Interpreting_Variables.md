@@ -131,9 +131,9 @@ A variable access is described by the name of the variable. Add this to `Expr.ja
 static class VarAccess extends Expr {
     String name;
 		
-		public VarAccess(String name) {
-			this.name = name;
-		}
+    public VarAccess(String name) {
+        this.name = name;
+    }
 }
 ```
 
@@ -146,15 +146,15 @@ There are two places in the parser that need to change. First, adding code to re
 ```
 public Stmt stmt() {
     if (check(Tokens.PRINT)) {
-		    return printStmt();
-		} else if (check(Tokens.NAME)) {
-		    return assignStmt();
-		} else {
-			  Driver.error(currentToken().type + " cannot begin a statement.",
-			               currentToken().line);
-			  return null;
-		}
-	}
+        return printStmt();
+    } else if (check(Tokens.NAME)) {
+        return assignStmt();
+    } else {
+        Driver.error(currentToken().type + " cannot begin a statement.",
+                     currentToken().line);
+        return null;
+    }
+}
 ```
 
 Next, add the `assignStmt` method:
