@@ -2,7 +2,7 @@
 
 This lab will guide you through the code modifications required to add support for variables and assignment statements to your interpreter.
 
-The key to supporting variables is a **symbol table**. which stores a mapping between a variable's name and its value:
+The key to supporting variables is a **symbol table**, which stores a mapping between a variable's name and its value:
 
 - Assigning to a variable is done by updating the value associated with its name in the symbol table.
 
@@ -330,6 +330,28 @@ program Test:
     print unknown_var
 end
 ```
+
+## Strings
+
+Now suppose you want to add support for string expressions. Modify the grammar as follows:
+
+```
+Expression --> AddExpr | StringExpr
+
+StringExpr --> StringLiteral
+```
+
+A `StringLiteral` is the `STRING` token returned by the Lexer. Recall that it has a `value`, which is the text of the string.
+
+To implement this feature:
+
+- Add a new `StringExpr` class with a `String` value to `Expr.java`.
+
+- Add code to `expr` in the parser to distinguish between `AddExpr` and `StringExpr` (hint: you can check the type of the next token with the `check` method)
+
+- Add code to `evalExpr` in the interpreter to return the value of a `StringExpr`.
+
+
 
 ## What's Next
 
