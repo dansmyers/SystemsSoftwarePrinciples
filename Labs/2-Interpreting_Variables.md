@@ -331,9 +331,19 @@ program Test:
 end
 ```
 
+## Mod
+
+Add support for a mod operator. Let the updated grammar be:
+
+```
+MultExpr --> NegExpr [('*' | '/' | '%') MultExpr]
+```
+
+Take a look at the `multExpr` method in the parser, then modify `evalMultExpr` in the interpreter to implement the mod operator.
+
 ## Strings
 
-Now suppose you want to add support for string expressions. Modify the grammar as follows:
+Now suppose you want to add support for string expressions. Let the grammar change to:
 
 ```
 Expression --> AddExpr | StringExpr
