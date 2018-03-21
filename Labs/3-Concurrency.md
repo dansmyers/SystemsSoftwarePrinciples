@@ -7,14 +7,16 @@ Remember that you need to `#include <pthread.h>` at the start of your program an
 
 ## If You Want to Destroy My Sweater
 
-Let's write a basic program that creates a thread and does something with it.
+Let's write a basic program that creates some threads.
 
 ```
 #include <stdio.h>
 #include <pthread.h>
 
+#define NUM_THREADS 99
 
-// Print the threads input id argument
+
+// Print the thread's input id argument
 void * print_thread_id (void *arg) {
     long id = (long) arg;
     printf("I'm thread %ld!\n", id);
@@ -25,16 +27,16 @@ void * print_thread_id (void *arg) {
 int main() {
 
     // Declare an array of threads
-    pthread_t threads[99];
+    pthread_t threads[NUM_THREADS];
     
     // Create those threads!
     long i;
-    for (i = 0; i < 99; i++) {
+    for (i = 0; i < NUM_THREADS; i++) {
         pthread_create(&threads[i], NULL, print_thread_id, (void *) i);
     }
     
     // Use pthread_join to make the main thread pause
-    for (i = 0; i < 99; i++) {
+    for (i = 0; i < NUM_THREADS; i++) {
         pthread_join(threads[i], NULL);
     }
 
