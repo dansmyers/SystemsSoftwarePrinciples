@@ -68,7 +68,7 @@ Explain how this code is now passing the value of `i` by **reference** rather th
 
 What is does the program print when you run it with these changes? Explain what you're seeing.
 
-## Lockdown
+## Lock
 
 Now write a program that creates two threads.
 
