@@ -67,3 +67,23 @@ long id = * ((long *) arg);  // In print_thread_id
 Explain how this code is now passing the value of `i` by **reference** rather than by **value**.
 
 What is does the program print when you run it with these changes? Explain what you're seeing.
+
+## Lockdown
+
+Now write a program that creates two threads.
+
+The first thread should run a function that **increments** a shared global variable
+in a loop. The second should run a function that **decrements** the same shared global variable in a loop. Print the value of
+the variable at the end of `main`: it should be 0.
+
+The code that updates the shared variable is in a ***critical region*** of the program, so there might be a ***race condition*** if both 
+threads update the variable at the same time. Create a lock that protects the critical region code.
+
+```
+pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;  // declare global mutex variable
+
+pthread_mutex_lock(&lock);  // To lock the mutex
+pthread_mutex_unlock(&lock);  // To unlock the mutex
+```
+
+
