@@ -76,6 +76,43 @@ The first thread should run a function that **increments** a shared global varia
 in a loop. The second should run a function that **decrements** the same shared global variable in a loop. Print the value of
 the variable at the end of `main`: it should be 0.
 
+```
+#include <stdio.h>
+#include <pthread.h>
+
+int value;  // Shared global
+
+#define NUM_ITERATIONS 1000000
+
+void * increment(void *arg) {
+    int i;
+    for (i = 0; i < NUM_ITERATIONS; i++) {
+        value++;
+    }
+}
+
+void * decrement(void *arg) {
+    int i;
+    for (i = 0; i < NUM_ITERATIONS; i++) {
+        value--;
+    }   
+}
+
+int main() {
+    
+    pthread_t incrementer, decrementer;
+    
+    pthread_create(&incrementer, NULL, increment, NULL);
+    pthread_create(&decrementer, NULL, decrement, NULL);
+    
+    pthread_join(incrementer, NULL);
+    pthread_join(decrementer, NULL);
+    
+    printf("value = %d\n", value);
+    return 0;
+}
+```
+
 The code that updates the shared variable is in a ***critical region*** of the program, so there might be a ***race condition*** if both 
 threads update the variable at the same time. Create a lock that protects the critical region code.
 
