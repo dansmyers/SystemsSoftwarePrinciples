@@ -1,0 +1,97 @@
+Producer-Consumer Problem (Pseudocode Solutions)
+================================================
+
+Version 1: Infinite Buffer
+--------------------------
+global array of items buffer
+sem_t items, mutex
+
+void producer() {
+    while (true) {        
+        event = waitForNextEvent();  // wait for something to happen
+        
+        sem_wait(&mutex);
+            addToBuffer(event);
+        sem_post(&mutex);
+        sem_post(&items);
+    }
+}
+
+void consumer() {
+    while (true) {
+        sem_wait(&items);
+        sem_wait(&mutex);
+            event = getFromBuffer();
+        sem_post(&mutex);
+        processEvent(event);
+    }
+}
+
+void initialization() {
+    sem_init(&mutex, 0, 1);
+    sem_init(&items, 0, 0);
+}
+
+Questions:
+    what does the value of the items semaphore represent?
+    why do we need a second mutex semaphore?
+    
+    
+Bad Variation: waiting while holding the mutex
+----------------------------------------------
+Suppose the consumer runs this code:
+
+void consumer() {
+    while (true) {
+        sem_wait(&mutex);
+            sem_wait(&items);  // Moved this line inside mutex
+            event = getFromBuffer();
+        sem_post(&mutex);
+        processEvent(event);
+    }
+}
+
+How could this lead to a deadlock? Hint: think about what happens
+if a consumer runs first and finds the buffer empty, then a producer
+runs.
+
+General rule: don't wait on another semaphore while holding a mutex.
+It's okay to post while holding a mutex.
+
+
+Version 2: Finite Buffer
+------------------------
+We need to add the ability for the producer to wait if the buffer
+is full.
+
+Question: why can't we just test if the semaphore items >= 0?
+
+sem_t items, spaces, mutex
+
+void producer() {
+    while (true) {
+        event = waitForNextEvent();
+    
+        sem_wait(&spaces);
+        sem_wait(&mutex);
+            addToBuffer(event);
+        sem_post(&mutex);
+        sem_post(&items);
+    }
+}
+
+void consumer() {
+    while (true) {
+        sem_wait(&items);
+        sem_wait(&mutex);
+            event = getFromBuffer();
+        sem_post(&mutex);
+        sem_post(&spaces);
+        
+        processEvent(event);
+    } 
+}
+
+Questions:
+    What are the initial values of the semaphores?    
+
