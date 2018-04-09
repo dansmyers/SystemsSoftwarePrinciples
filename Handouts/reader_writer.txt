@@ -1,0 +1,96 @@
+Readers-Writers Problem
+=======================
+This is one of the classic synchronization problems; it models what
+happens with a system like a database, where some threads want to
+write to the DB and modify its state and others only want to read.
+
+Only one writer is allowed to update the DB at any time, but any
+number of readers may be reading. No thread may try to read while
+another thread is writing.
+
+Version 1: Basic Implementation
+-------------------------------
+sem_t roomEmpty, mutex
+int numReaders
+
+void writer() {
+    sem_wait(&roomEmpty)
+    write()
+    sem_post(&roomEmpty)
+}
+
+void reader() {
+    sem_wait(&mutex)
+    numReaders++
+    if numReaders == 1
+        sem_wait(&roomEmpty)
+    sem_post(&mutex)
+    
+    read()
+    
+    sem_wait(&mutex)
+    numReaders--
+    if numReaders == 0
+        sem_post(&roomEmpty)
+    sem_post(&mutex)
+}
+
+Allen Downey calls the reader code a "lightswitch". The first thread
+to arrive "turns on" the light and the last thread to leave turns it
+back off.
+
+Questions:
+    What should the initialization conditions be for the semaphores?
+    
+    Simulate the case where a writer arrives, then two readers arrive
+    while the writer is performing its update.
+    
+    What is the disadvantage of this version, from a writer's view?
+    
+    
+Version 2: Don't Starve
+-----------------------
+This version requires readers to queue behind writers. Once a writer
+enters the system, no readers will be allowed to enter until at
+least one writer has gone through.
+
+sem_t roomEmpty, mutex, turnstile
+int numReaders
+
+void writer() {
+    sem_wait(&turnstile)
+    sem_wait(&roomEmpty)
+    write()  // Critical section
+    sem_post(&turnstile)
+    sem_post(&roomEmpty)
+}
+
+void reader() {
+    sem_wait(&turnstile)
+    sem_post(&turnstile)
+
+    sem_wait(&mutex)
+    numReaders++
+    if numReaders == 1
+        sem_wait(&roomEmpty)
+    sem_post(&mutex)
+    
+    read()  // Critical section
+    
+    sem_wait(&mutex)
+    numReaders--
+    if numReaders == 0
+        sem_post(&roomEmpty)
+    sem_post(&mutex)
+}
+
+Questions:
+    Determine the initialization values of the semaphores.
+
+    Simulate the case where two readers arrive, then a writer and
+    two more readers arrive before the first reader finishes
+    
+    How does the turnstile semaphore get its name?
+    
+    Is it guaranteed that a writer that arrives first and locks the
+    turnstile to readers will always get to run first?
