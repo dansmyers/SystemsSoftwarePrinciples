@@ -1,0 +1,157 @@
+Fluffernutters
+==============
+This is a variation of the "Cigarette Smokers' Problem", which exists
+in a few variations.
+
+The original CSP was proposed by Suhas Patil, who claimed that it
+couldn't be solved using semaphores. To achieve that goal, he
+included several arbitrary restrictions, like disallowing any
+conditional statements or arrays of semaphores. This version is
+so restricted that it's not very interesting.
+
+To make a fluffernutter you need three things:
+    - bread
+    - marshamallow fluff
+    - peanut butter
+
+There are three patrons in a fluffernutter bar. Each has an infinite
+supply of one item, but needs the other two to make an eat a
+sandwich.
+
+There is a "dealer" who repeatedly puts two of the items on the
+table and waits for them to be picked up.
+
+Easy Version 1: Let the Dealer Signal the Patrons
+-------------------------------------------------
+Suppose the dealer knows the which patron needs which items. She can
+simply signal the appropriate patron using a dedicated semaphore.
+
+sem_t hasFluff, hasBread, hasPeanutButter, tableEmpty;
+
+void dealer() {
+    while (true) {
+        items = getTwoItems();
+    
+        // Fill in calls to signal each patron
+        if items are fluff and bread
+
+        if items are bread and peanut butter
+
+        if items are fluff and peanut butter
+        
+
+        // Wait for the patron to take the two items
+    }
+}
+
+void guyWithBread() {
+    while (true) {
+        // Wait for items
+
+        takeItems();
+
+        // Signal that the table is now clear
+
+        eat();
+    }
+}
+
+void initialization() {
+    sem_init(&tableEmpty, 0, 1);
+    sem_init(&hasBread, 0, 0);
+    sem_init(&hasFluff, 0, 0);
+    sem_init(&hasPeanutButter, 0, 0);
+}
+
+Version 2: No Individual Signals
+--------------------------------
+The first version is super easy because the dealer has perfect
+knowledge and wakes up the correct thread every time.
+
+What if the dealer is only allowed to announce the two items on the
+table, but can't control which thread takes them? This more closely
+mimics the original problem formulation, where the dealer was an
+abstraction of the operating system and couldn't be modified.
+
+void dealer() {
+    while (true) {
+        items = getTwoItems();
+    
+        if items are fluff and bread {
+            sem_post(&fluff)
+            sem_post(&bread)
+        }
+
+        if items are bread and peanut butter{
+            sem_post(&bread)
+            sem_post(&peanutButter)
+        }
+
+        if items are fluff and peanut butter {
+            sem_post(&fluff)
+            sem_post(&peanutButter)
+        }
+      
+        // Wait for the patron to take the two items
+        sem_wait(&tableEmpty)
+    }
+}
+
+The seemingly straightforward solution is this:
+
+void guyWithBread() {
+    while (true) {
+        sem_wait(&fluff)
+        sem_wait(&peanutButter)
+        takeItems()
+        sem_post(&tableEmpty);
+        eat()
+    }
+}
+
+Question: how can this lead to a deadlock if all three consumers
+run similar code?
+
+Solution: Pushers
+-----------------
+This version of the problem was solved by Parnas, who introduced
+the concept of "pushers" to signal the waiting patrons.
+
+We'll add three booleans to keep track of which items have appeared
+on the table: isFluff, isBread, isPeanutButter.
+
+Each pusher waits for its item to appear on the table, then checks
+the status of the three item variables. If one of the other items
+has already been set, then it knows the pusher for that item has
+already run and checked the table, so it's safe to signal the
+appropriate patron.
+
+void fluffPusher() {
+    while (true) {
+        sem_wait(&fluff)
+        sem_wait(&mutex)
+            if isBread {  // fluff and bread and on table
+                isBread = false
+                sem_post(&hasPeanutButter)
+            }
+            else if isPeanutButter {  // fluff and peanut butter
+                isPeanutButter = false
+                sem_post(&hasBread)
+            }
+            else {  // this thread has woken up first
+                isFluff = true
+            }
+        sem_post(&mutex)
+    }
+}
+
+The consumer code is the same as in the first version.
+
+Questions:
+    Suppose the dealer puts out fluff and bread. What happens if the
+    fluff pusher runs first? What happens if the bread pusher runs
+    first?
+    
+    Make an argument that there is no risk of a deadlock in this
+    solution to the problem. Hint: deadlock would require waiting
+    for one semaphore while holding another.

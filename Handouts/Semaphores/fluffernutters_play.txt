@@ -1,0 +1,182 @@
+Fluffernutters Bar
+==================
+
+Version 1: Let the Dealer Signal
+--------------------------------
+<A PATRON WITH BREAD enters the Fluffernutter Bar. The DEALER and
+the PATRON WITH FLUFF and PATRON WITH PEANUT BUTTER are already
+at the bar.>
+
+
+Dealer
+
+    Welcome to the fluffernutter bar!
+    
+Patron with Bread
+
+    I thought this was a cigarette smokers' bar?
+    
+Dealer
+
+    That was in the old days. We've rebranded to a more ridiculously
+    hipsterish appropriation of stereotypical middle-American culture.
+    
+    I think we're being ironic, but I'm not really sure anymore.
+    
+Patron with Bread
+
+    Okay...one fluffernutter, please.
+    
+Dealer
+
+    Oh! I don't make the fluffernutters. I simply put two items on
+    the table and signal you to make your own fluffernutters.
+    
+    I see that you already have some bread.
+    
+Patron with Fluff
+
+    I HAVE FLUFF!
+    
+Patron with Peanut Butter
+
+    M GMMH HMMGMH MGHMHM!
+    
+    <'Cause he's eating peanut butter>
+    
+Patron with Bread
+
+    Let's do this like Brutus.
+    
+Dealer
+
+    I put some fluff on the table and some peanut butter on the
+    table.
+    
+    Patron with bread! This one's yours!
+    
+Patron with Bread
+
+    Thank you, I am now signaling that I've cleared the table.
+    
+<END SCENE>
+
+Version 2: A More Restrictive Dealer (Confusion Arises)
+-------------------------------------------------------
+
+Patron with Bread
+
+    I'm back and I brought my own bread. I'll wait at the table
+    until you signal me to make a fluffernutter!
+    
+Dealer
+
+    There's been a change in policy. Now I can no longer signal an
+    individual patron. Instead, I can only announce which items have
+    been placed on the table. It's your responsibility to take the
+    items and make a fluffernutter.
+    
+    FLUFF!
+    
+    PEANUT BUTTER!
+    
+Patron with Bread
+
+    Oh, fluff! I need that!
+    
+    <Takes the fluff.>
+    
+Patron with Fluff
+
+    PEANUT BUTTER! GIVE TO ME!
+    
+Patron with Bread
+
+    (Soliloquy)
+
+    I'm sorry, but I think you interrupted me and took the second
+    item that I needed. I'll never be able to make progress if 
+    you're holding it.
+    
+    And I'm already holding the fluff, so I'll never be able to clear
+    the table and signal to the dealer to put more items out.
+    
+    Would that I had not been interrupted while trying to acquire
+    multiple resources that I need to make progress, and would that
+    there were some way to relinquish resources that had already
+    been acquired by one or more patrons.
+    
+    Sadly, our bar does not support that functionality.
+    
+<END SCENE>
+    
+Version 3: New Employment Opportunities
+---------------------------------------
+
+< Three PUSHERS are now asleep behind the bar. >
+
+Dealer
+
+    After yesterday's fiasco, we've had to make some changes in how
+    we make fluffernutters.
+    
+Patron with Fluff
+
+    Are you going to make and serve the fluffernutters yourself?
+    
+Dealer
+
+    Don't be ridiculous.
+    
+    We've hired three new employees to work as item pushers to each
+    of you.
+    
+Pushers
+
+    'Sup.
+    
+    < They go back to sleep. >
+    
+Dealer
+
+    When I put some items on the table, I'll signal the pushers, who
+    will take a look at what items are on the table and then signal
+    the appropriate customer to pick them up.
+    
+Patron with Peanut Butter
+
+    But won't there be a risk of a deadlock if you signal two pushers
+    at the same time?
+    
+Dealer
+
+    That's just it, we're going to use a mutex to protect the table.
+    
+    Fluff! Peanut butter!
+    
+Fluff Pusher
+
+    Oh! I've been signaled because there's fluff on the table.
+    
+    Let's see. If I'm the first one to run, I should just note that
+    there's fluff on the table. The next pusher to run will decide who
+    to signal based on the other item. 
+    
+    Got some fluff on the table now!
+    
+Peanut Butter Pusher
+
+    < Yawns >
+    
+    Did somebody signal me? Oh, there's peanut butter on the table.
+    And it looks like my fluff-pushing counterpart has already
+    noticed that there's fluff.
+    
+    So, let me check my notes...fluff and peanut butter...that means
+    ...patron with bread, you're up!
+    
+Patron with Bread
+
+    Ah. Fluffernutters. The pause that refreshes.
+    
+    I think I'm developing a serious problem.
