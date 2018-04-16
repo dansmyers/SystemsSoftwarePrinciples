@@ -6,14 +6,17 @@
 int max;
 int balance = 0; // shared global variable
 
-
+// Declare a semaphore variable
+sem_t mutex;
 
 void * mythread(void *arg) {
     int i;
     for (i = 0; i < max; i++) {
-        
-		balance = balance + 1;
-		
+
+        sem_wait(&mutex);
+		balance = balance + 1;  // Critical region
+        sem_post(&mutex);
+
     }
 
     return NULL;
@@ -27,8 +30,9 @@ int main(int argc, char *argv[]) {
     }
     max = atoi(argv[1]);
     
-    
-    
+    // Initialize the semaphore
+    sem_init(&mutex, 0, 1);  // 2nd arg is always 0 (for us), 3rd is the value
+
     printf("main: begin [balance = %d] [%p]\n", balance, &balance);
 
     // Declare and start threads

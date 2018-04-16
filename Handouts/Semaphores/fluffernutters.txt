@@ -34,23 +34,29 @@ void dealer() {
     
         // Fill in calls to signal each patron
         if items are fluff and bread
+            sem_post(&hasPeanutButter);
 
         if items are bread and peanut butter
+            sem_post(&hasFluff);
 
         if items are fluff and peanut butter
+            sem_post(&hasBread);
         
 
         // Wait for the patron to take the two items
+        sem_wait(&tableEmpty);
     }
 }
 
 void guyWithBread() {
     while (true) {
         // Wait for items
+        sem_wait(&hasBread);
 
         takeItems();
 
         // Signal that the table is now clear
+        sem_post(&tableEmpty);
 
         eat();
     }

@@ -10,7 +10,11 @@ void * a(void *arg) {
     printf("This is thread a.\n");
     sleep(3);
     printf("a has arrived at the rendezvous point.\n");
-
+    
+    // a should not pass this point until b reaches the corresponding in its
+    // own code
+    sem_post(&a_arrived);
+     sem_wait(&b_arrived);
 
 
     printf("a is proceeeding forward.\n");
@@ -23,7 +27,10 @@ void * b(void *arg) {
     sleep(6);
     printf("b has arrived at the rendezvous point.\n");
 
-
+    // b should not pass this point until a reaches the corresponding point
+    // in its code
+    sem_post(&b_arrived);
+    sem_wait(&a_arrived);
 
     printf("b is proceeeding forward.\n");
     return NULL;
@@ -31,7 +38,8 @@ void * b(void *arg) {
                                                                              
 int main(int argc, char *argv[]) {                    
     // Initialize semaphores
-
+    sem_init(&a_arrived, 0, 0);
+    sem_init(&b_arrived, 0, 0);
 
     // Declare and start threads
    	pthread_t a_thread;

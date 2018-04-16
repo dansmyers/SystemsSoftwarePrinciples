@@ -12,13 +12,11 @@ void * child(void *arg) {
 
 
 
-
     return NULL;
 }
 
                                                                              
 int main(int argc, char *argv[]) {                    
-
 
 
     // Declare and start threads
@@ -27,7 +25,6 @@ int main(int argc, char *argv[]) {
     
     // Wait for child to finish
     printf("Parent is waiting for child to finish.\n");
-
 
 
 
