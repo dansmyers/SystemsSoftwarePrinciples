@@ -125,7 +125,7 @@ $ java -jar target/cms330-rest-example-0.1.0.jar
 
 This time, running the `jar` file actually starts a web server.
 
-Open a new tab in your browser and navigate to `https://cms330-YOURNAME.c9users.io`, where `YOURNAME` is your Cloud 9 user name.
+Open a new tab in your browser and navigate to `https://cms330-YOURNAME.c9users.io/hello`, where `YOURNAME` is your Cloud 9 user name.
 
 You may see a message with an orange-ish screen pop up, telling you this is a test application. Click the button to proceed.
 
