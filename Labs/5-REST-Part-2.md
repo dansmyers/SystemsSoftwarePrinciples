@@ -175,3 +175,56 @@ The style of programming that developed around `XmlHttpRequest` is called AJAX, 
 - It is *asynchronous* because the client specifies a listener function that will run and handle the server's response when it arrives. The client does not have to block and wait while the request is in process.
 
 - XML ("Extensible Markup Language") is an HTML-like markup variant that allows for arbitrary tags around data items. It is useful, but verbose. The original AJAX implementations used XML to structure data passed between clients and servers. Nowadays, there are other, more compact options for passing values. One of the most popular is *JavaScript Object Notation* (JSON), which is a text-based representation of a JavaScript object.
+
+First, modify your `/hello` method in `Controller.java` so that it can access a parameter.
+
+```
+
+```
+
+Next, update `index.html` to the following:
+
+```
+<!DOCTYPE html>
+<html>
+
+    <!-- Head contains metadata on the whole document -->
+    <head>
+        <title>CMS 330 REST Demo</title>
+    </head>
+
+    <!-- Body contains the page's content -->
+    <body>
+        <h1>Input</h1>
+
+        <p>Type your name in the box below and press Submit.</p>
+
+        <input type="text" id="inputBox" />
+        <button type="button" id="submitButton"> Submit </button>
+
+        <!-- The div tag creates a named region of the page -->
+        <div id="responseDiv"></div>
+
+        <!-- script tag contains JavaScript that interacts with page elements -->
+        <script>
+            // Set a listener function for the button click
+            document.getElementById('submitButton').onclick = function () {
+
+                // Get the current string in the text box
+                var input = document.getElementById('inputBox').value;
+
+                // Create and send the HTTP request
+                var oReq = new XMLHttpRequest();
+                oReq.addEventListener("load", responseListener);
+                oReq.open("GET", "http://prep-dmyers.c9users.io/hello?name=" + input);
+                oReq.send();
+            }
+
+            // Listener runs when the server's response comes back
+            function responseListener() {
+                document.getElementById('responseDiv').innerHTML = this.responseText;
+            }
+        </script>
+    </body>
+</html>
+```
