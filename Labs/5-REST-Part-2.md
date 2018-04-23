@@ -20,7 +20,7 @@ use HTTP; that's just the most common implementation in modern web applications.
 
 The REST concept was developed by Roy Fielding in 2000 as part of his docotoral dissertation. He outlined six properties that a REST application should have:
 
-1. Client-Server architecture. We've got this already. One of the major benefits of the client-server concept is that it decouples the dvelopment of the front end from the development of the back end. Both compoenents can evolve in their own ways, but remain interoperable because they communicate through a well-defined interface.
+1. Client-Server architecture. We've got this already. One of the major benefits of the client-server concept is that it decouples the dvelopment of the front end from the development of the back end. Both components can evolve in their own ways, but remain interoperable because they communicate through a well-defined interface.
 
 2. Stateless. The server does not store any state or history related to its interactions with individual clients. If the client requests 
 a service, it must supply all of the information that the sever needs within the request. The server can still store general data (for example, in a back-end database), but it can't maintain a memory of the requests it's received or the responses it's sent to any individual client. Statelessness improves reliability. If the sever had to maintain state on every client, recovering from failures would be extremely difficult: you'd have to reconstruct the entire chain of operations that led to each client's state at the time of the failure.
@@ -142,7 +142,7 @@ First, notice that there are two input elements. One is a text box and the other
 assigns a name that can be used to interact with the element.
 
 The third page element is a `div`, which you can think of as a page division. The `div` tag creates a labeled region of the page that
-can be given an `id` name, so that you can interact with it later. This `div` is going to be used to print a response message from
+has an `id`, so that you can interact with it later. This `div` is going to be used to print a response message from
 the server.
 
 The page has a `script` tag located inside the `body`. The content of the `script` is JavaScript. Notice that the commenting style
@@ -172,7 +172,7 @@ listener function that will run when the client receives the server's response r
 
 The style of programming that developed around `XmlHttpRequest` is called AJAX, which stands for *Asynchronous JavaScript and XML*.
 
-- It is *asynchronous* because the client specifies a listener function that will run and handle the server's response when it arrives. The client does not have to block and wait while the request is in process.
+- It is *asynchronous* because the client specifies a listener function that will run and handle the server's response when it arrives. The client does not have to block and wait while the request is in process. Further, it lets you process the server's response and udpate part of the interface *without reloading the entire page*.
 
 - XML ("Extensible Markup Language") is an HTML-like markup variant that allows for arbitrary tags around data items. It is useful, but verbose. The original AJAX implementations used XML to structure data passed between clients and servers. Nowadays, there are other, more compact options for passing values. One of the most popular is *JavaScript Object Notation* (JSON), which is a text-based representation of a JavaScript object.
 
@@ -244,3 +244,40 @@ $ java -jar target/cms330-rest-example-0.1.0.jar
 The new code is fairly simple. One key detail: the parameter (`name`) is passed to the server *as part of the URL*.
 
 In this style, the overall HTTP method is `GET`, which implies that the request does not have a body, but the URL has been extended with a `?` followed by a set of name-value parameter pairs.
+
+## Style
+
+Last thing: make it pretty. Add some CSS styling to the `head` portion:
+
+```
+    <!-- Head contains metadata on the whole document -->
+    <head>
+        <title>CMS 330 REST Demo</title>
+
+        <style>
+            body {
+                font-family: "Helvetica", "Arial", sans-serif;
+                font-size: 18pt;
+                color: #333333;
+                background-color: #FEFEFE;
+                margin: 40px auto;
+                max-width: 640px;
+            }
+
+            div {
+                margin-top: 40px;
+            }
+
+            button {
+                font-family: "Helvetica", "Arial", sans-serif;
+                font-size: 14pt;
+            }
+
+            input {
+                font-family: "Helvetica", "Arial", sans-serif;
+                font-size: 14pt;
+                width: 50%;
+            }
+        </style>
+    </head>
+```
