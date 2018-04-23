@@ -179,7 +179,10 @@ The style of programming that developed around `XmlHttpRequest` is called AJAX, 
 First, modify your `/hello` method in `Controller.java` so that it can access a parameter.
 
 ```
-
+@RequestMapping("/hello")
+public String hello(@RequestParam(value="name", defaultValue="World") String name) {
+    return "Hello, " + name + "!";
+}
 ```
 
 Next, update `index.html` to the following:
@@ -213,7 +216,7 @@ Next, update `index.html` to the following:
                 // Get the current string in the text box
                 var input = document.getElementById('inputBox').value;
 
-                // Create and send the HTTP request
+                // Create and send an HTTP request
                 var oReq = new XMLHttpRequest();
                 oReq.addEventListener("load", responseListener);
                 oReq.open("GET", "http://prep-dmyers.c9users.io/hello?name=" + input);
@@ -228,3 +231,7 @@ Next, update `index.html` to the following:
     </body>
 </html>
 ```
+
+The new code is fairly simple. One key detail: the parameter (`name`) is passed to the server *as part of the URL*.
+
+In this style, the overall HTTP method is `GET`, which implies that the request does not have a body, but the URL has been extended with a `?` followed by a set of name-value parameter pairs.
