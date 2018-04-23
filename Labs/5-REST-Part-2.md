@@ -18,7 +18,7 @@ execution of the associated server code, which will often return an HTTP respons
 As you might expect, this is a bit of simplification of REST, which in its technical description is very flexible. It doesn't have to
 use HTTP; that's just the most common implementation in modern web applications.
 
-The REST concept was developed by Roy Fielding in 2000 as a docotoral dissertation. He outlined six properties that a REST application should have:
+The REST concept was developed by Roy Fielding in 2000 as part of his docotoral dissertation. He outlined six properties that a REST application should have:
 
 1. Client-Server architecture. We've got this already. One of the major benefits of the client-server concept is that it decouples the dvelopment of the front end from the development of the back end. Both compoenents can evolve in their own ways, but remain interoperable because they communicate through a well-defined interface.
 
