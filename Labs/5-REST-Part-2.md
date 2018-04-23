@@ -281,3 +281,76 @@ Last thing: make it pretty. Add some CSS styling to the `head` portion:
         </style>
     </head>
 ```
+
+## Final Page
+
+Here is the complete `index.html` page with everything in it:
+
+```
+<!DOCTYPE html>
+<html>
+
+    <!-- Head contains metadata on the whole document -->
+    <head>
+        <title>CMS 330 REST Demo</title>
+
+        <style>
+            body {
+                font-family: "Helvetica", "Arial", sans-serif;
+                font-size: 18pt;
+                color: #333333;
+                background-color: #FEFEFE;
+                margin: 40px auto;
+                max-width: 640px;
+            }
+
+            div {
+                margin-top: 40px;
+            }
+
+            button {
+                font-family: "Helvetica", "Arial", sans-serif;
+                font-size: 14pt;
+            }
+
+            input {
+                font-family: "Helvetica", "Arial", sans-serif;
+                font-size: 14pt;
+                width: 50%;
+            }
+        </style>
+    </head>
+
+    <!-- Body contains the page's content -->
+    <body>
+        <h1>Input</h1>
+
+        <p>Type your name in the box below and press Submit.</p>
+
+        <input type="text" id="inputBox" />
+        <button type="button" id="submitButton"> Submit </button>
+
+        <!-- The div tag creates a named region of the page -->
+        <div id="responseDiv"></div>
+
+        <!-- script tag contains JavaScript that interacts with page elements -->
+        <script>
+            // Set a listener function for the button click
+            document.getElementById('submitButton').onclick = function () {
+
+                // Get the current string in the text box
+                var input = document.getElementById('inputBox').value;
+
+                var oReq = new XMLHttpRequest();
+                oReq.addEventListener("load", responseListener);
+                oReq.open("GET", "http://prep-dmyers.c9users.io/hello?name=" + input);
+                oReq.send();
+            }
+
+            function responseListener() {
+                document.getElementById('responseDiv').innerHTML = this.responseText;
+            }
+        </script>
+    </body>
+</html>
+```
