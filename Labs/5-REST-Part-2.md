@@ -4,7 +4,7 @@
 ## Previously on CMS 330 Labs
 
 The last lab focused on setting up a web server and controller using the Java Spring Boot framework. This required a fair amount of
-assistance from the Maven build tool and its `pom.xml` file, but that stuff is now fixed and you won't need to make any changes to it.
+assistance from the Maven build tool and its `pom.xml` file, but that stuff is now set and you won't need to make any changes to it.
 
 In this lab, we're going to add some more pieces to the server, starting with the ability to return an HTML page, then the capability
 of passing information between the client and the server.
