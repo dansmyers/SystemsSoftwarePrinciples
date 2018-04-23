@@ -341,12 +341,14 @@ Here is the complete `index.html` page with everything in it:
                 // Get the current string in the text box
                 var input = document.getElementById('inputBox').value;
 
+                // Create and send an HTTP request
                 var oReq = new XMLHttpRequest();
                 oReq.addEventListener("load", responseListener);
-                oReq.open("GET", "http://prep-dmyers.c9users.io/hello?name=" + input);
+                oReq.open("GET", "http://cms330-YOURNAME.c9users.io/hello?name=" + input);
                 oReq.send();
             }
 
+            // Listener runs when the server's response comes back
             function responseListener() {
                 document.getElementById('responseDiv').innerHTML = this.responseText;
             }
