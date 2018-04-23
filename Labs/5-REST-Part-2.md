@@ -64,8 +64,8 @@ Next, add a new mapping to `Controller.java`. This mapping will load and return 
 the root page of the application. You need to add two imports to the top of the file.
 
 ```
-import java.nio.Files;
-import java.nio.Paths;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 ```
 
 ```
