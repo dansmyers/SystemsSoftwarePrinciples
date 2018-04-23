@@ -37,7 +37,7 @@ a service, it must supply all of the information that the sever needs within the
 
 Okay, let's do some practical stuff.
 
-Create a top-level directory called `html` and add a file to it called `index.html`. This should be within the `4-REST` direcotry. Don't nest it within the `src` directory hierarchy.
+Create a top-level directory called `html` and add a file to it called `index.html`. This should be within the `4-REST` directory. Don't nest it within the `src` directory hierarchy.
 
 Put the following HTML into `index.html`:
 
@@ -63,8 +63,6 @@ Put the following HTML into `index.html`:
 Next, add a new mapping to `Controller.java`. This mapping will load and return the contents of `index.html` when the user requests
 the root page of the application. You need to add two imports to the top of the file.
 
-The snippet of code loads the contents of `index.html` as a byte array, then converts it to a `String` and returns it. The Spring framework does all the word of turning that return value into an HTTP response and routing it back to the client.
-
 ```
 import java.nio.Files;
 import java.nio.Paths;
@@ -85,6 +83,8 @@ public String index() {
     return indexHtml;
 }
 ```
+
+The snippet of code loads the contents of `index.html` as a byte array, then converts the array to a `String` and returns it. The Spring framework does all the word of turning that return value into an HTTP response and routing it back to the client.
 
 Build your app and run it from the command line.
 
@@ -219,7 +219,7 @@ Next, update `index.html` to the following:
                 // Create and send an HTTP request
                 var oReq = new XMLHttpRequest();
                 oReq.addEventListener("load", responseListener);
-                oReq.open("GET", "http://prep-dmyers.c9users.io/hello?name=" + input);
+                oReq.open("GET", "http://cms330-YOURNAME.c9users.io/hello?name=" + input);
                 oReq.send();
             }
 
@@ -230,6 +230,15 @@ Next, update `index.html` to the following:
         </script>
     </body>
 </html>
+```
+
+Once again, change `YOURNAME` to your Cloud 9 user name.
+
+Close your current server with `CTRL + c`, then compile and run the server again:
+
+```
+$ ./mvnw clean package
+$ java -jar target/cms330-rest-example-0.1.0.jar
 ```
 
 The new code is fairly simple. One key detail: the parameter (`name`) is passed to the server *as part of the URL*.
