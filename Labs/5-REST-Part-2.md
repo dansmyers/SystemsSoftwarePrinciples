@@ -219,7 +219,7 @@ Next, update `index.html` to the following:
                 // Create and send an HTTP request
                 var oReq = new XMLHttpRequest();
                 oReq.addEventListener("load", responseListener);
-                oReq.open("GET", "http://cms330-YOURNAME.c9users.io/hello?name=" + input);
+                oReq.open("GET", "https://cms330-YOURNAME.c9users.io/hello?name=" + input);
                 oReq.send();
             }
 
