@@ -99,7 +99,7 @@ It will take a few seconds for the server to start up. When it does, open a brow
 
 ## Interact
 
-Update `index.html` to the following. This code introduced several new elements.
+Update `index.html` to the following. This code introduces several new elements.
 
 ```
 <!DOCTYPE html>
@@ -161,3 +161,17 @@ the button. Notice that the function is **anonymous**: it doesn't have a name. T
 3. The third call sets the content of the `responseDiv` element by setting its `innerHTML` property.
 
 Clearly, this style of programming requires you to know what properties and fields are available for each element. These are standardized as part of the HTML specification, but, in practice, you will often end up doing documentation searches to figure out exactly what field to read or set for a particular element to get the effect you want.
+
+## Send and Receive
+
+Now, we're going to add one more element to the JavaScript code: a call that sends information from the page to the server and receives a response.
+
+The feature that implements this behavior is called `XmlHttpRequest`. An `XmlHttpRequest` object represents an HTTP communication with
+a server. It specifies the target server URL and any body text or parameters that go along with the message. It also specifies a
+listener function that will run when the client receives the server's response returns.
+
+The style of programming that developed around `XmlHttpRequest` is called AJAX, which stands for *Asynchronous JavaScript and XML*.
+
+- It is *asynchronous* because the client specifies a listener function that will run and handle the server's response when it arrives. The client does not have to block and wait while the request is in process.
+
+- XML ("Extensible Markup Language") is an HTML-like markup variant that allows for arbitrary tags around data items. It is useful, but verbose. The original AJAX implementations used XML to structure data passed between clients and servers. Nowadays, there are other, more compact options for passing values. One of the most popular is *JavaScript Object Notation* (JSON), which is a text-based representation of a JavaScript object.
