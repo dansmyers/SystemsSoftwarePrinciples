@@ -74,7 +74,7 @@ There are two important changes:
 
 2. A `count` class member that keeps track of the number of satisfied requests.
 
-Next, create a `Status.java` class in `serc/main/java/cms330`:
+Next, create a `Status.java` class in `src/main/java/cms330`:
 
 ```
 package cms330;
