@@ -119,6 +119,18 @@ Refresh the page and you should see the count increment.
 
 ## JSON and JavaScript Objects
 
+Objects in JavaScript are really **HashMaps**. Each object has a set of `name:value` pairs, where the `name` is a string and the
+`value` can be any data type, including an array or another object. Python's dictionaries operate similarly.
+
+*JavaScript Object Notation* (JSON) is a way of representing JS objects in text form. JSON is frequently used in REST-based
+web applications to pass data between the client and server sides.
+
+*Aside*: XML was the preferred text format for passing information in older implementations. This shows up in names like 
+`XMLHttpRequest` and AJAX ("Asynchronous JavaScript and XML"), but JSON is the actually the most commonly used tool for information passing in modern applications.
+
+The return string `{"count":0}` indicates that this is an object (denoted by the curly braces) with a field named `"count"` that is
+associated with the value `0`.
+
 
 ## Front-End
 
