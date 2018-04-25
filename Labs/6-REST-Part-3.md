@@ -202,7 +202,7 @@ Option 1 is straightforward Java text processing. Here's an example of how to im
 
                 var oReq = new XMLHttpRequest();
                 oReq.addEventListener("load", responseListener);
-                oReq.open("GET", "http://prep-dmyers.c9users.io/hello?name=" + input);
+                oReq.open("GET", "https://cms330-YOURNAME.c9users.io/hello?name=" + input);
                 oReq.send();
             }
 
@@ -211,7 +211,7 @@ Option 1 is straightforward Java text processing. Here's an example of how to im
 
                 var oReq = new XMLHttpRequest();
                 oReq.addEventListener("load", statusListener);
-                oReq.open("GET", "http://prep-dmyers.c9users.io/status");
+                oReq.open("GET", "https://cms330-YOURNAME.c9users.io/status");
                 oReq.send();
             }
 
