@@ -7,7 +7,7 @@ This lab will let you practice creating a RESTful HTTP interface using the Java 
 Navigate to your `SystemsSoftwarePrinciples` directory and perform a `git pull`. You should add this directory, `4-REST`, to the `Labs`
 subdirectory.
 
-Spring Boot is a framework for creating Rest-based web services where the server is written in Java.
+Spring Boot is a framework for creating REST-based web services where the server is written in Java.
 
 - You write some Java classes, following a specific layout structure.
 
