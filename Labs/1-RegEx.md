@@ -13,9 +13,7 @@ As soon as the workspace becomes available, go to the **Sharing** tab in the upp
 
 There's a famous programming joke:
 
-```
-You need to solve a problem. You decide to use regular expressions. Now you have two problems.
-```
+> You need to solve a problem. You decide to use regular expressions. Now you have two problems.
 
 `grep` is short for *globally search a regular expression and print*. Its basic use case takes two arguments:
 
